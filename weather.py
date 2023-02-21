@@ -1,6 +1,7 @@
 import requests
 import json
 from tkinter import *
+import apiKey
 
 main = Tk()
 
@@ -21,13 +22,13 @@ def apiWork():
 
     zip = zipGet.get()
 
-    apiKey = "943fbefcf71e4cb3ac970bdf6bda4502"
+    key = apiKey.serviceKey
     
     geoCodeParse1 = "https://api.geoapify.com/v1/geocode/search?postcode="
     geoCodeParse2 = "&filter=countrycode:us,ca&format=json&apiKey="
     geoCode = geoCodeParse1.__add__(str(zip))
     geoCode = geoCode.__add__(geoCodeParse2)
-    geoCode = geoCode.__add__(apiKey)
+    geoCode = geoCode.__add__(key)
     geoCodeResponse  = requests.get(geoCode)
 
     temp1 = geoCodeResponse.json()['results'][0]['lon']
